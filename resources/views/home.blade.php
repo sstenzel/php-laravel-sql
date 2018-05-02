@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-TEST
+TEST2
                 </div>
             </div>
         </div>
