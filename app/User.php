@@ -14,7 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
+   protected $fillable = [
         'name', 'email', 'password',
     ];
 
@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+//-------------------------------------------
+
+    public function role() {
+
+            return $this->belongsTo(Role::class);
+    }
+
+    public function sets() {
+
+            return $this->hasMany(Set::class);
+     }
+
+    public function subcategories() {
+
+        return $this->belongsToMany(Subcategory::class);
+  }
 }
