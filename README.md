@@ -1,2 +1,4 @@
-# php-laravel-sql
-Php Laravel + Mysql/Psql
+# Php Laravel + Mysql/Psql
+
+
+[ under construction... ]
