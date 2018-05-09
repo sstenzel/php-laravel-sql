@@ -18,7 +18,7 @@
                             <a class="nav-link active" href="/language/{{ $subcategory->language->shortcut}}/{{ $subcategory->name }}/edytuj">Edytuj</a>
                         </li>
                     @endauth
-                    <div class="col-sm-12 col-md-6 text-right">
+                    <div class="col-sm-12 col-md-7 text-right">
                         <a class="btn btn-default pull-right"
                            href="/subcategory/back/{{$subcategory->id}}">
                           Wróć
@@ -38,7 +38,7 @@
                                 <div class="col-md-3"> Nowa nazwa</div>
                                 <div class="col-md-4">
                                     <input type="string" class="form-control" name="name"
-                                   placeholder="{{$subcategory -> name}}">
+                                   placeholder="{{$subcategory -> name}}" required>
                                </div>
                                <div class="col-md-2">
                                    <button type="submit" class="btn btn-default">Akceptuj zmianę</button>
@@ -94,7 +94,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-8">
                                     <input type="string" class="form-control" name="name"
-                                   placeholder="Wprowadź nazwe">
+                                   placeholder="Wprowadź nazwe" required>
                                </div>
                                <div class="col-md-3">
                                    <button type="submit" class="btn btn-default">Dodaj</button>

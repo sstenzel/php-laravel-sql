@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LearnController extends Controller
 {
+
     public function index($languageShortcut, $subcategoryName, $setName)
     {
         $set = Set::getSet($languageShortcut, $subcategoryName, $setName);

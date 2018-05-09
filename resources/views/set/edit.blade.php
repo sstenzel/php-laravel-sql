@@ -26,7 +26,7 @@
                         </li>
                         @endif
                     @endauth
-                    <div class="col-md-2 text-right">
+                    <div class="col-md-4 text-right">
                         <a class="btn btn-default pull-right"
                            href="/set/back/{{$set->id}}">
                           Wróć
@@ -47,8 +47,8 @@
                         <div class="row">
                             <div class="col-md-3"> Nowa nazwa </div>
                             <div class="col-md-4">
-                                <input type="string" class="form-control" name="name" id="nameaaa"
-                               placeholder="{{$set -> name}}">
+                                <input type="string" class="form-control" name="name"
+                               placeholder="{{$set -> name}}" required>
                            </div>
                            <div class="col-md-2">
                                <button type="submit" class="btn btn-default">Akceptuj zmianę</button>
@@ -73,11 +73,11 @@
                               <div class="form-group">
                                   <div class="row">
                                   <div class="col-sm-4">
-                                      <input type="string" class="form-control" name="word1" id="word1"
+                                      <input type="string" class="form-control" name="word1"
                                      placeholder="{{ $word -> word1 }}">
                                   </div>
                                   <div class="col-sm-4">
-                                      <input type="string" class="form-control" name="word2" id="word2"
+                                      <input type="string" class="form-control" name="word2"
                                      placeholder="{{ $word -> word2 }}">
                                   </div>
                                   <div class="col-sm-3">
@@ -113,11 +113,11 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <input type="string" class="form-control" name="newWord1"
-                               placeholder="Polski">
+                               placeholder="Polski" required>
                            </div>
                            <div class="col-md-4">
                                <input type="string" class="form-control" name="newWord2"
-                              placeholder="{{ $set->languageName() }}">
+                              placeholder="{{ $set->languageName() }}" required>
                           </div>
                            <div class="col-md-2">
                                <button type="submit" class="btn btn-default">Dodaj</button>

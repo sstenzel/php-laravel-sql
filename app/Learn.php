@@ -49,7 +49,9 @@ class Learn extends Model
                 if (request($word1) == $word2 )
                     $correct++;
             }
-            return number_format($correct/$wordCount, 2, '.', ',');
+            if ($wordCount != 0)
+                return number_format($correct/$wordCount, 2, '.', ',');
+            return 0;
     }
 
     public static function clearSession() {

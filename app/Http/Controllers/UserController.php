@@ -6,15 +6,21 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
         $user =  \App\User::findOrFail(Auth::id());
         $results = $user->results;
 
-        return view('user/index', compact('results'));
+        return view('user/index', ['results' => $results]);
     }
 
     public function users()
@@ -30,21 +36,17 @@ class UserController extends Controller
             $user = User::findOrFail($userId);
             $user->delete();
 
-            $users=  \App\User::all();
-            $roles= \App\Role::all();
-
             return back();
     }
 
     public function userEdit(Request $request, $userId)
     {
+            if (request('email') != null && request('role_id') != null) {
             $user = User::findOrFail($userId);
             $user->email = request('email');
             $user->role_id = request('role_id');
             $user ->save();
-
-            $users=  \App\User::all();
-            $roles= \App\Role::all();
+            }
             return back();
     }
 

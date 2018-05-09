@@ -26,7 +26,7 @@
                         </li>
                         @endif
                     @endauth
-                    <div class="col-md-2 text-right">
+                    <div class="col-md-4 text-right">
                         <a class="btn btn-default pull-right"
                            href="/set/back/{{$set->id}}">
                           Wróć

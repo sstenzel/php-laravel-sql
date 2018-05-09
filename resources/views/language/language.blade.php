@@ -20,8 +20,8 @@
                         </li>
                         @endif
                     @endauth
-                    <div class="col-md-2 text-right">
-                        <a class="btn btn-default pull-right"
+                    <div class="col-md-7 float-right">
+                        <a class="btn btn-default float-right"
                            href="/">
                           Wróć
                       </a>

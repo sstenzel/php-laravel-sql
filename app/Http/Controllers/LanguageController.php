@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['show','index']);
+    }
 
     public function index()
     {
@@ -16,11 +20,12 @@ class LanguageController extends Controller
 
     public function store(Request $request)
     {
-        $language = new Language;
-        $language->name = request('name');
-        $language->shortcut = request('shortcut');
-        $language ->save();
-
+        if (request('name') != null && request('shortcut') != null) {
+            $language = new Language;
+            $language->name = request('name');
+            $language->shortcut = request('shortcut');
+            $language ->save();
+        }
         return back();
     }
 

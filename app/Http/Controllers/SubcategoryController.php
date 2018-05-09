@@ -7,16 +7,20 @@ use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['show','back']);
+    }
 
     public function store(Request $request, $languageId)
     {
-        if (request('name') != null) {
-            $subcategory = new Subcategory;
-            $subcategory->name = request('name');
-            $subcategory->language_id = $languageId;
-            $subcategory ->save();
-        }
+            if (request('name') != null) {
+                $subcategory = new Subcategory;
+                $subcategory->name = request('name');
+                $subcategory->language_id = $languageId;
+                $subcategory ->save();
+            }
+
         return back();
     }
 
@@ -37,9 +41,10 @@ class SubcategoryController extends Controller
 
     public function update(Request $request, $subcategoryId){
                $subcategory = Subcategory::findOrFail($subcategoryId);
-                       if (request('name') != null)
-               $subcategory->name = request('name');
-               $subcategory ->save();
+                if (request('name') != null) {
+                   $subcategory->name = request('name');
+                   $subcategory ->save();
+                }
            return view('subcategory.edit', compact('subcategory'));
        }
 

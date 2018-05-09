@@ -20,7 +20,7 @@
                         </li>
                         @endif
                     @endauth
-                    <div class="col-md-2 text-right">
+                    <div class="col-md-7 text-right">
                         <a class="btn btn-default pull-right"
                            href="/">
                           Wróć
@@ -67,8 +67,8 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-8">
-                            <input type="string" class="form-control" name="name" id="name"
-                           placeholder="Wprowadź nazwe">
+                            <input type="string" class="form-control" name="name"
+                           placeholder="Wprowadź nazwe" required>
                        </div>
                        <div class="col-md-3">
                            <button type="submit" class="btn btn-default">Dodaj</button>

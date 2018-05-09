@@ -61,9 +61,64 @@
                             </div>
                             <hr>
                     @endforeach
+                    <div class="row justify-content-center">
+                        <canvas id="canvas" width="400" height="300"></canvas>
+                    </div>
 
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('chart')
+<script type="text/javascript" src="{{ asset('js/chart/Chart.bundle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/chart/Utils.js') }}"></script>
+
+
+<script>
+      var color = Chart.helpers.color;
+          var ctx = document.getElementById('canvas').getContext('2d');
+          window.myHorizontalBar = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: [
+                      @foreach($results as $result)
+                      '{{ $result->set->name }}',
+                      @endforeach
+                  ],
+                  datasets: [{
+                             label: 'Procent',
+                             backgroundColor: 'rgba(71, 83, 107, 0.2)',
+                             borderColor: 'rgba(71, 83, 107, 0.5)',
+                             borderWidth: 1,
+                             data: [
+                                 @foreach($results as $result)
+                                 '{{ $result->percentage }}',
+                                 @endforeach
+                             ]
+                } ]
+              },
+              options: {
+                  elements: {
+                      rectangle: {
+                          borderWidth: 2,
+                      }
+                  },
+                  responsive: true,
+                  title: {
+                      display: true,
+                      text: 'Postępy w nauce'
+                  },
+                  scales: {
+                      yAxes: [{
+                          ticks: {
+                              beginAtZero:true
+                          }
+                      }]
+                  }
+              }
+          });
+  </script>
+
 @endsection

@@ -103,9 +103,6 @@
                         </div>
                         </div>
                     @endforeach
-
-
-
             <hr/>
             @endforeach
 
@@ -120,11 +117,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <input type="string" class="form-control" name="name"
-                           placeholder="Wprowadź nazwę">
+                           placeholder="Wprowadź nazwę" required>
                        </div>
                        <div class="col-md-4">
                            <input type="string" class="form-control" name="shortcut"
-                          placeholder="Skrót">
+                          placeholder="Skrót" required>
                       </div>
                        <div class="col-md-2">
                            <button type="submit" class="btn btn-default">Dodaj</button>

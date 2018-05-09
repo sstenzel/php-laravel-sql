@@ -39,7 +39,7 @@
                 <div class="col-sm-2">
                     Język
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     Podkategoria
                 </div>
             </div>

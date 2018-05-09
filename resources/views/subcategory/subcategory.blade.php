@@ -18,7 +18,7 @@
                             <a class="nav-link" href="/language/{{ $subcategory->language->shortcut}}/{{ $subcategory->name }}/edytuj">Edytuj</a>
                         </li>
                     @endauth
-                    <div class="col-sm-12 col-md-6 text-right">
+                    <div class="col-sm-12 col-md-7 text-right">
                         <a class="btn btn-default pull-right"
                            href="/subcategory/back/{{$subcategory->id}}">
                           Wróć

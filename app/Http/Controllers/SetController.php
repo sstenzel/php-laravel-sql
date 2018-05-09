@@ -11,12 +11,13 @@ class SetController extends Controller
 {
     public function __construct()
     {
-    //    $this->middleware('auth')->except('show');
+        $this->middleware('auth')->except(['show','back']);
     }
 
 
     public function store(Request $request, $subcategoryId)
     {
+        if (request('name') != null) {
         $set = new Set;
         $set->name = request('name');
         if (request('private') != null)
@@ -24,7 +25,7 @@ class SetController extends Controller
         $set->user_id = Auth::id();
         $set->subcategory_id = $subcategoryId;
         $set ->save();
-
+        }
         return back();
     }
 
@@ -44,9 +45,10 @@ class SetController extends Controller
 
  public function update(Request $request, $setId){
             $set = Set::findOrFail($setId);
-            if (request('name') != null)
-            $set->name = request('name');
-            $set ->save();
+            if (request('name') != null) {
+                $set->name = request('name');
+                $set ->save();
+            }
         return view('set.edit', compact('set'));
     }
 
