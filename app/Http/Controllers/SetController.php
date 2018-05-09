@@ -3,83 +3,71 @@
 namespace App\Http\Controllers;
 
 use App\Set;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 
 class SetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+    //    $this->middleware('auth')->except('show');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function store(Request $request, $subcategoryId)
     {
-        //
+        $set = new Set;
+        $set->name = request('name');
+        if (request('private') != null)
+        $set->private= request('private');
+        $set->user_id = Auth::id();
+        $set->subcategory_id = $subcategoryId;
+        $set ->save();
+
+        return back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function show($languageShortcut, $subcategoryName, $setName)
     {
-        //
+        $set = Set::getSet($languageShortcut, $subcategoryName, $setName);
+        return view('set.set', compact('set'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Set  $set
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Set $set)
-    {
-        //
+    public function edit($languageShortcut, $subcategoryName, $setName) {
+            $set = Set::getSet($languageShortcut, $subcategoryName, $setName);
+            return view('set.edit', compact('set'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Set  $set
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Set $set)
-    {
-        //
+
+
+ public function update(Request $request, $setId){
+            $set = Set::findOrFail($setId);
+            if (request('name') != null)
+            $set->name = request('name');
+            $set ->save();
+        return view('set.edit', compact('set'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Set  $set
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Set $set)
+    public function destroy($setId)
     {
-        //
+            $set = Set::findOrFail($setId);
+            $set->delete();
+
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Set  $set
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Set $set)
-    {
-        //
+    public function test($languageShortcut, $subcategoryName, $setName) {
+            $set = $this->getSet($languageShortcut, $subcategoryName, $setName);
+            return view('set.test', compact('set'));
     }
+
+    public function back(Set $set)
+    {
+            $subcategory =  $set->subcategory;
+
+            return view('subcategory.subcategory', compact('subcategory'));
+    }
+
 }

@@ -14,11 +14,11 @@ class LanguagesTableSeeder extends Seeder
         DB::table('languages')->insert([
         [
             'id' => 1,
-            'name' => 'English',
+            'name' => 'Angielski',
             'shortcut' => 'EN'
         ], [
             'id' => 2,
-            'name' => 'Spanish',
+            'name' => 'Hiszpański',
             'shortcut' => 'ES'
         ]
         ]);

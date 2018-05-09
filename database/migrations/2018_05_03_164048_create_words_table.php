@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResultsTable extends Migration
+class CreateWordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('words', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('set_id')->unsigned()->index();
-            $table->float('percentage');
+            $table->unsignedInteger('set_id');
+            $table->foreign('set_id')->references('id')->on('sets')->onDelete('cascade');
+            $table->string('word1');
+            $table->string('word2');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('words');
     }
 }

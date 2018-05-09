@@ -13,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email');
             $table->string('password');
             $table->rememberToken();
-            $table->integer('role_id')->default(1)->unsigned()->index();  // tu error bo cos tam w future php
+            $table->unsignedInteger('role_id')->default(1);
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
         });
     }

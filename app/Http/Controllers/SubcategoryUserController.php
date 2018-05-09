@@ -3,83 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\subcategory_user;
+use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SubcategoryUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+     public function store(Request $request)
+     {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+         $user = User::findOrFail(request('userId'));
+         $user->subcategories()->attach(request('subcategoryId'));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\subcategory_user  $subcategory_user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(subcategory_user $subcategory_user)
-    {
-        //
-    }
+         return back();
+     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\subcategory_user  $subcategory_user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(subcategory_user $subcategory_user)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\subcategory_user  $subcategory_user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, subcategory_user $subcategory_user)
+    public function destroy($userId, $subcategoryId)
     {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\subcategory_user  $subcategory_user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(subcategory_user $subcategory_user)
-    {
-        //
+        $user = User::findOrFail($userId);
+        $user->subcategories()->detach($subcategoryId);
+
+        return back();
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSetsTable extends Migration
+class CreateResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateSetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sets', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('subcategory_id');
+            $table->unsignedInteger('set_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
-            $table->boolean('private')->default(true);
+            $table->foreign('set_id')->references('id')->on('sets')->onDelete('cascade');
+            $table->float('percentage');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateSetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sets');
+        Schema::dropIfExists('results');
     }
 }

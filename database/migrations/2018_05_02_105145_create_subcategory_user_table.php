@@ -15,8 +15,10 @@ class CreateSubcategoryUserTable extends Migration
     {
         Schema::create('subcategory_user', function (Blueprint $table) {
                $table->index(['user_id', 'subcategory_id']);
-                $table->integer('user_id')->unsigned()->index();
-                $table->integer('subcategory_id')->unsigned()->index();
+               $table->unsignedInteger('user_id');
+               $table->unsignedInteger('subcategory_id');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
                 $table->timestamps();
         });
     }

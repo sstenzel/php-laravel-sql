@@ -11,6 +11,13 @@ class Subcategory_userTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('subcategory_user')->insert([
+        [
+            'user_id' => 2,
+            'subcategory_id' => 2,
+        ], [
+            'user_id' => 3,
+            'subcategory_id' => 3,
+        ]]);
     }
 }

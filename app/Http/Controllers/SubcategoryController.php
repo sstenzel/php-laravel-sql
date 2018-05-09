@@ -7,79 +7,55 @@ use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+
+    public function store(Request $request, $languageId)
     {
-        //
+        if (request('name') != null) {
+            $subcategory = new Subcategory;
+            $subcategory->name = request('name');
+            $subcategory->language_id = $languageId;
+            $subcategory ->save();
+        }
+        return back();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function show($languageShortcut, $subcategoryName)
     {
-        //
+        $subcategory = Subcategory::getSubcategory($languageShortcut, $subcategoryName);
+        return view('subcategory.subcategory', compact('subcategory'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function edit($languageShortcut, $subcategoryName)
     {
-        //
+            $subcategory = Subcategory::getSubcategory($languageShortcut, $subcategoryName);
+            return view('subcategory.edit', compact('subcategory'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subcategory $subcategory)
+
+    public function update(Request $request, $subcategoryId){
+               $subcategory = Subcategory::findOrFail($subcategoryId);
+                       if (request('name') != null)
+               $subcategory->name = request('name');
+               $subcategory ->save();
+           return view('subcategory.edit', compact('subcategory'));
+       }
+
+
+    public function destroy($subcategoryId)
     {
-        //
+            $subcategory = Subcategory::findOrFail($subcategoryId);
+            $subcategory->delete();
+
+            return back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subcategory $subcategory)
+    public function back(Subcategory $subcategory)
     {
-        //
+            $language =$subcategory->language;
+            return view('language.language', compact('language'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Subcategory $subcategory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Subcategory  $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Subcategory $subcategory)
-    {
-        //
-    }
 }

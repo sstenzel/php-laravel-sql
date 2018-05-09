@@ -16,8 +16,8 @@ class CreateSubcategoriesTable extends Migration
         Schema::create('subcategories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description');
-            $table->integer('language_id')->unsigned()->index;
+            $table->unsignedInteger('language_id');
+            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->boolean('hidden')->default(false);
             $table->timestamps();
         });

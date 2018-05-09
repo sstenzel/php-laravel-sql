@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Words extends Model
+class Word extends Model
 {
     public function set() {
 
