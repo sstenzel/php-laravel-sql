@@ -35,7 +35,7 @@ class Learn extends Model
 
     public static function incorrectSet($request, $shuffledSet){
             foreach($shuffledSet as $word1 => $word2) {
-                if (request($word1) != $word2 )
+                if (strtolower(request($word1)) != strtolower($word2) )
                     return true;
             }
             return false;
@@ -46,7 +46,8 @@ class Learn extends Model
             $wordCount = 0;
             foreach($shuffledSet as $word1 => $word2) {
                 $wordCount++;
-                if (request($word1) == $word2 )
+                //dd(request($word1) );
+                if (strtolower(request($word1)) === strtolower($word2) )
                     $correct++;
             }
             if ($wordCount != 0)

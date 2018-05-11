@@ -11,7 +11,7 @@ class WordController extends Controller
     public function store(Request $request, $setId){
         $word = new Word;
         $word->set_id = $setId;
-        $word->word1 = request('newWord2');
+        $word->word1 = request('newWord1');
         $word->word2 = request('newWord2');
         $word ->save();
 

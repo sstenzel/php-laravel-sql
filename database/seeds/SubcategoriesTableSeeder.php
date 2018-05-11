@@ -14,27 +14,19 @@ class SubcategoriesTableSeeder extends Seeder
         DB::table('subcategories')->insert([
         [
             'id' => 1,
-            'name' => 'Adjectives',
+            'name' => 'Rzeczowniki',
             'language_id' => DB::table('languages')->where('shortcut', 'EN')->pluck('id')->first()
         ],[
             'id' => 2,
-            'name' => 'Nouns',
+            'name' => 'Czasowniki',
             'language_id' => DB::table('languages')->where('shortcut', 'EN')->pluck('id')->first()
         ],[
             'id' => 3,
-            'name' => 'Verbs',
+            'name' => 'Przymiotniki',
             'language_id' => DB::table('languages')->where('shortcut', 'EN')->pluck('id')->first()
         ],[
             'id' => 4,
-            'name' => 'Adjectives',
-            'language_id' => DB::table('languages')->where('shortcut', 'ES')->pluck('id')->first()
-        ],[
-            'id' => 5,
-            'name' => 'Nouns',
-            'language_id' => DB::table('languages')->where('shortcut', 'ES')->pluck('id')->first()
-        ],[
-            'id' => 6,
-            'name' => 'Verb',
+            'name' => 'Rzeczowniki',
             'language_id' => DB::table('languages')->where('shortcut', 'ES')->pluck('id')->first()
         ]
         ]);
